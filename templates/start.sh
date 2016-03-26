@@ -10,7 +10,12 @@ done
 
 # default="$(cat /etc/varnish/default.vcl.original)"
 # echo $(eval echo \"$default\") > /etc/varnish/default.vcl
-
+counter=0
+while ! nc -vz $BACKEND_PORT_5118_TCP_ADDR $BACKEND_PORT_5118_TCP_PORT; do
+  counter=$((counter+1));
+  if [ $counter -eq 60 ]; then break; fi;
+  sleep 1;
+done
 # Start varnish and log
 /etc/varnish/sbin/varnishd -f /etc/varnish/default.vcl -s malloc,100M -a 0.0.0.0:80
 /etc/varnish/bin/varnishlog
