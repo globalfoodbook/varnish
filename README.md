@@ -21,6 +21,8 @@ $ docker run --name=varnish --link=gfb:backend -e VARNISH_HOST=globalfoodbook.co
 
 # NB:
 
+Take note the linking above --link=gfb:backend.. 'backend' is compulsory as it is being referenced within (Environment variables).
+
 ## Before pushing to docker hub
 
 ## Login
