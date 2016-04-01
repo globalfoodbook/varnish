@@ -54,6 +54,7 @@ include "/etc/varnish/inc/xforward.vcl";
 include "/etc/varnish/inc/purge.vcl";
 include "/etc/varnish/inc/bigfiles.vcl";        # Varnish 3.0.3+
 include "/etc/varnish/inc/static.vcl";
+include "/etc/varnish/inc/sitemaps.vcl";
 
 acl purge {
 	"localhost";
