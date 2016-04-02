@@ -4,7 +4,6 @@ A Docker container for setting up Vanish. This server can respond to requests fr
 
 This is a sample Varnish docker container used to test Wordpress installation on [http://globalfoodbook.com](http://globalfoodbook.com)
 
-
 To build this varnish server run the following command:
 
 ```bash
@@ -43,7 +42,6 @@ $ docker build -t <username>/<repo>:latest .
 ```bash
 $ docker push <username>/<repo>:latest
 ```
-
 
 IP=`docker inspect varnish | grep -w "IPAddress" | awk '{ print $2 }' | head -n 1 | cut -d "," -f1 | sed "s/\"//g"`
 HOST_IP=`/sbin/ifconfig eth1 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`
