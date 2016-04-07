@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 cp /etc/varnish/default.vcl.original /etc/varnish/default.vcl
 
 for name in BACKEND_PORT_5118_TCP_PORT BACKEND_PORT_5118_TCP_ADDR VARNISH_HOST
