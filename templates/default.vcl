@@ -54,7 +54,6 @@ include "/etc/varnish/inc/xforward.vcl";
 include "/etc/varnish/inc/purge.vcl";
 include "/etc/varnish/inc/bigfiles.vcl";        # Varnish 3.0.3+
 include "/etc/varnish/inc/static.vcl";
-include "/etc/varnish/inc/sitemaps.vcl";
 
 acl purge {
 	"localhost";
@@ -89,6 +88,10 @@ sub vcl_recv {
 	if (req.method !~ "^GET|HEAD|PUT|POST|TRACE|OPTIONS|DELETE$") {
 		return(pipe);
 	}
+
+  if (req.url ~ "\.xml(\.gz)?$") {
+   return (pass);
+  }
 
 	### Check for reasons to bypass the cache!
 	# never cache anything except GET/HEAD

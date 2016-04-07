@@ -41,7 +41,6 @@ ADD templates/default.vcl /etc/varnish/default.vcl.original
 ADD templates/bigfiles.vcl /etc/varnish/inc/bigfiles.vcl
 ADD templates/purge.vcl /etc/varnish/inc/purge.vcl
 ADD templates/static.vcl /etc/varnish/inc/static.vcl
-ADD templates/sitemaps.vcl /etc/varnish/inc/sitemaps.vcl
 ADD templates/xforward.vcl /etc/varnish/inc/xforward.vcl
 ADD templates/bad_bot_detection.vcl /etc/varnish/inc/bad_bot_detection.vcl
 ADD templates/start.sh /etc/varnish/start.sh
