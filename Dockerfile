@@ -43,8 +43,8 @@ ADD templates/purge.vcl /etc/varnish/inc/purge.vcl
 ADD templates/static.vcl /etc/varnish/inc/static.vcl
 ADD templates/xforward.vcl /etc/varnish/inc/xforward.vcl
 ADD templates/bad_bot_detection.vcl /etc/varnish/inc/bad_bot_detection.vcl
-ADD templates/start.sh /etc/varnish/start.sh
-RUN chmod +x /etc/varnish/start.sh
+ADD templates/entrypoint.sh /etc/varnish/entrypoint.sh
+RUN chmod +x /etc/varnish/entrypoint.sh
 
 RUN echo "Europe/London" | tee /etc/timezone && dpkg-reconfigure --frontend noninteractive tzdata
 
@@ -53,8 +53,8 @@ RUN if [ ! -f /root/.oh-my-zsh/ ]; then git clone git://github.com/robbyrussell/
 RUN cp /root/.oh-my-zsh/templates/zshrc.zsh-template /root/.zshrc
 RUN chsh -s $(which zsh) root && zsh && sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="ys"/g' /root/.zshrc
 
-ADD templates/start.sh /etc/start.sh
-RUN chmod +x /etc/start.sh
+ADD templates/entrypoint.sh /etc/entrypoint.sh
+RUN chmod +x /etc/entrypoint.sh
 
 # VOLUMES ["/var/lib/varnish", "/etc/varnish"]
 
@@ -63,4 +63,4 @@ EXPOSE 443
 
 # Setup the entrypoint
 ENTRYPOINT ["/bin/bash", "-l", "-c"]
-CMD ["/etc/start.sh"]
+CMD ["/etc/entrypoint.sh"]
