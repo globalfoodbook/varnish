@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -e
-set -x
+# set -x
 
 cp /etc/varnish/default.vcl.original /etc/varnish/default.vcl
 
@@ -19,6 +19,7 @@ until $(curl --output /dev/null --silent --head --fail http://$BACKEND_PORT_5118
   if [ $counter -eq 90 ]; then break; fi;
   sleep 20;
 done
+
 # Start varnish and log
 /etc/varnish/sbin/varnishd -f /etc/varnish/default.vcl -s malloc,100M -a 0.0.0.0:80
 /etc/varnish/bin/varnishlog
