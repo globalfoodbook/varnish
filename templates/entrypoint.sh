@@ -17,7 +17,7 @@ counter=0
 until $(curl --output /dev/null --silent --head --fail http://$BACKEND_PORT_5118_TCP_ADDR:$BACKEND_PORT_5118_TCP_PORT); do
   counter=$((counter+1));
   if [ $counter -eq 90 ]; then break; fi;
-  sleep 1;
+  sleep 20;
 done
 # Start varnish and log
 /etc/varnish/sbin/varnishd -f /etc/varnish/default.vcl -s malloc,100M -a 0.0.0.0:80
