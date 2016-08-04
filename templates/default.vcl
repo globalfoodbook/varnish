@@ -18,8 +18,8 @@ vcl 4.0;
 # import std;
 
 backend default {
-  .host = "${BACKEND_PORT_5118_TCP_ADDR}";
-  .port = "${BACKEND_PORT_5118_TCP_PORT}";
+  .host = "${BACKEND_PORT_80_TCP_ADDR}";
+  .port = "${BACKEND_PORT_80_TCP_PORT}";
 	.probe = {
     #.url = "/"; # short easy way (GET /)
     # We prefer to only do a HEAD /
@@ -57,7 +57,7 @@ include "/etc/varnish/inc/static.vcl";
 
 acl purge {
 	"localhost";
-  "${BACKEND_PORT_5118_TCP_ADDR}";
+  "${BACKEND_PORT_80_TCP_ADDR}";
   "::1";
 }
 

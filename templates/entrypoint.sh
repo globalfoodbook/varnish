@@ -5,7 +5,7 @@ set -e
 
 cp /etc/varnish/default.vcl.original /etc/varnish/default.vcl
 
-for name in BACKEND_PORT_5118_TCP_PORT BACKEND_PORT_5118_TCP_ADDR VARNISH_HOST
+for name in BACKEND_PORT_80_TCP_PORT BACKEND_PORT_80_TCP_ADDR VARNISH_HOST
 do
   eval value=\$$name
   sed -i "s|\${${name}}|${value}|g" /etc/varnish/default.vcl
@@ -14,7 +14,7 @@ done
 # default="$(cat /etc/varnish/default.vcl.original)"
 # echo $(eval echo \"$default\") > /etc/varnish/default.vcl
 counter=0
-until $(curl --output /dev/null --silent --head --fail http://$BACKEND_PORT_5118_TCP_ADDR:$BACKEND_PORT_5118_TCP_PORT); do
+until $(curl --output /dev/null --silent --head --fail http://$BACKEND_PORT_80_TCP_ADDR:$BACKEND_PORT_80_TCP_PORT); do
   counter=$((counter+1));
   if [ $counter -eq 90 ]; then break; fi;
   sleep 20;
