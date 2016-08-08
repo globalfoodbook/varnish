@@ -60,6 +60,7 @@ RUN chmod +x /etc/entrypoint.sh
 
 EXPOSE 80
 EXPOSE 443
+EXPOSE 5118
 
 # Setup the entrypoint
 ENTRYPOINT ["/bin/bash", "-l", "-c"]
