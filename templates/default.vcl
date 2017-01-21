@@ -114,6 +114,10 @@ sub vcl_recv {
 	if (req.url ~ "nocache|wp-admin|wp-(comments-post|login|signup|activate|mail|cron)\.php|preview\=true|admin-ajax\.php|xmlrpc\.php|bb-admin|server-status|control\.php|bb-login\.php|bb-reset-password\.php|register\.php") {
 		return(pass);
 	}
+	# avoid querysort wordpress script loading 
+	if (req.url !~ "load-scripts\.php") {
+ 		set req.url = std.querysort(req.url);
+	}
 
 	### looks like we might actually cache it!
 	# fix up the request
